@@ -1,0 +1,38 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.cake-img-sm {
+    height:auto;
+    /* max-height:226px; */
+    max-width:100%;
+}
+
+.cake-img-lg {
+    max-width:100%;
+    max-height:100%;
+}
+
+
+.top {
+    /* height:50vh; */
+}
+.cakesContainer {
+    
+}
+.cakes {
+    /* min-height:10%; */
+    /* height:600px; */
+    height:40vh;
+    /* outline:2px solid red; */
+}
+
+.half {
+    height: 50vh;
+}
+
+.checked {
+    color: orange;
+}

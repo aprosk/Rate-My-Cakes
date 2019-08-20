@@ -1,20 +1,57 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container top">
+    <!-- {{ cakes | json }} -->
+    <h1>Rate My Cakes</h1>
+    <div class="row cakesContainer">
+      <form (submit)="onSubmitCake()" class="border p-2 col-4">
+        <h5>Submit a cake to be rated</h5>
+        <div class="form-group">
+          <label for="baker">Baker Name</label>
+          <input class="form-control" type="text" name="baker" id="baker" [(ngModel)]="newCake.baker">
+        </div>
+        <div class="form-group">
+          <label for="imageUrl">Image URL</label>
+          <input class="form-control" type="text" name="imageUrl" id="imageUrl" [(ngModel)]="newCake.imageUrl">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+
+      <div class="col-8 cakes overflow-auto">
+
+        <div *ngFor="let cake of cakes" class="cake row border">
+          <div class="col-4 d-flex justify-content-center align-items-center px-0">
+            <img class="cake-img-sm" [src]="cake.imageUrl" alt="Cake" (click)="showDetails(cake)">
+          </div>
+          <div class="col-8 d-flex align-items-center">
+            <form (submit)="onSubmitReview(cake._id)" class="flex-grow-1">
+              <div class="form-group">
+                <label>Comment</label>
+                <input class="form-control" type="text" name="comment" [(ngModel)]="reviewForms[cake._id].comment">
+              </div>
+              
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <label class="mb-0">Rating</label>
+                  <div (mouseleave)="resetColor(cake._id)">
+                    <span *ngFor="let star of reviewForms[cake._id].stars; let i = index" [class]="showStar(cake._id, i)" (click)="setRating(cake._id, i)" (mouseenter)="hoverStar(cake._id, i)"></span>
+                  </div>
+                </div>
+          
+                <button class="btn btn-primary" type="submit">Submit</button>
+
+                <!-- <div class="form-group d-flex justify-content-end"> -->
+                  
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <app-cake *ngIf="cakeToShow" [cakeToShow]="cakeToShow" [avgRating]="avgRating"></app-cake>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 

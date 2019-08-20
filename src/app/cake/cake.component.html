@@ -1,0 +1,20 @@
+<div class="half">
+
+    <div class="row">
+        <div class="col-4">
+            <h3>Reviews</h3>
+            <h6>Average rating: {{avgRating}} <span class="fa fa-star checked"></span></h6>
+            <div *ngFor="let review of cakeToShow.reviews">
+                <div>
+                    <span *ngFor="let star of stars; let i = index" [class]="showStar(review.rating, i)"></span>
+                </div>
+                <p>{{review.comment}}</p>
+            </div>
+        </div>
+        <div class="col-8 pl-0">
+            <img [src]="cakeToShow.imageUrl" alt="Cake" class="cake-img-lg half">
+        </div>
+        
+    </div>
+</div>
+    
